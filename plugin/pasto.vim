@@ -13,7 +13,7 @@ if exists("g:loaded_Pasto") || !executable("curl") || &cp
   finish
 endif
 
-let g:loaded_Pasto = '0.3'
+let g:loaded_Pasto = '0.4'
 let s:pastoBase = 'http://pasto.elefantesrosas.com.ar'
 
 let s:pastoSyntax  = {   'awk':         'awk',
@@ -38,7 +38,9 @@ function! s:ResolveTextFormat()
 endfunction
 
 function! s:PastoPut(user, title, text)
-  let params = 'data[_cli]=1&data[Pasto][nick]='.a:user.'&data[Pasto][title]='.a:title.'&data[Pasto][type]='.s:ResolveTextFormat()
+  let params  = 'data[_cli]=1&data[Pasto][nick]='.a:user
+  let params .= '&data[Pasto][title]='.a:title
+  let params .= '&data[Pasto][type]='.s:ResolveTextFormat()
   let url = s:pastoBase."/pastos/add"
   let command = 'curl -s --data-urlencode "data[Pasto][text]@-" -d "'.params.'" '.url
   echo 'Sending...'
@@ -56,12 +58,12 @@ function! Pasto() range
 endfunction
 
 function! PastoGet()
-  let PastoId = inputdialog('Enter PastoId: ")
+  let PastoId = inputdialog('Enter PastoId: ')
   let url = s:pastoBase.'/pastos/get/'.PastoId
   let command = 'curl -s '.url
   echo 'Loading...'
   execute '.!'.command
-  echo 'Loaded!"
+  echo 'Loaded!'
 endfunction
 
 com! PastoGet :call PastoGet()
