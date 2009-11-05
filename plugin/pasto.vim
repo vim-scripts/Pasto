@@ -7,14 +7,14 @@
 "   paster.vim
 "     http://www.vim.org/scripts/script.php?script_id=2602
 "   pasto.sh
-"     http://pasto.elefantesrosas.com.ar/pastos/view/48
+"     http://pastopasto.com.ar/pastos/view/48
 
 if exists("g:loaded_Pasto") || !executable("curl") || &cp
   finish
 endif
 
-let g:loaded_Pasto = '0.4'
-let s:pastoBase = 'http://pasto.elefantesrosas.com.ar'
+let g:loaded_Pasto = '0.5'
+let s:pastoBase = 'http://pastopasto.com.ar'
 
 let s:pastoSyntax  = {   'awk':         'awk',
                        \ 'sh':          'bash',
